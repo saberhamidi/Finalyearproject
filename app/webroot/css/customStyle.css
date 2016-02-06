@@ -1,0 +1,17 @@
+#wrapper{
+
+	background-color: white;
+	height: 210px;
+	width: 300px;
+	border-radius: 10px;
+	margin-left: 570px;
+	margin-top: 150px;
+}
+
+#wrapper form{
+
+	height: 200px;
+	width: 250px;
+	padding-top: 10px;
+	margin-left: 25px;
+}
