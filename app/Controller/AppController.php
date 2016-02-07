@@ -15,13 +15,13 @@ class AppController extends Controller {
 			'authenticate' => array(
 				'Form' => array(
 					'fields' => array(
-						'username' => 'email',
+						'username' => 'restaurant_id',
 						'password' => 'password'
 					),
 					'passwordHasher' => 'Blowfish',
 				),
 			),
-			'loginRedirect' => '/users',
+			'loginRedirect' => '/campaigns',
 			'logoutRedirect' => '/',
 		),
 	);
@@ -52,6 +52,8 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->Auth->loginAction = array( 'controller' => '/');
+		$this->Auth->allow('uesrs','login');
 	}
 
 	/**
