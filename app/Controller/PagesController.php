@@ -19,6 +19,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('ConnectionManager', 'Model');
 
 /**
  * Static content controller
@@ -44,10 +45,25 @@ class PagesController extends AppController {
  * @throws NotFoundException When the view file could not be found
  *	or MissingViewException in debug mode.
  */
-	public function display() {
+	public function display($userID =null) {
 		$path = func_get_args();
 
 		$count = count($path);
+
+		if($count > 1){
+
+			$db = ConnectionManager::getDataSource('default');
+
+			//fetch customer id from the participant table using the record id
+			$cust_id = $db->query("SELECT participant_id FROM participants WHERE id = ?",[$path[1]]);
+			if($cust_id){
+				$cust_id = $cust_id[0][0]['participant_id'];
+				$db->query("UPDATE customers SET loyalty_balance = loyalty_balance + 2 WHERE email = ?", [$cust_id]);
+			}
+			unset($path[1]);
+
+		}
+
 		if (!$count) {
 			return $this->redirect('/');
 		}

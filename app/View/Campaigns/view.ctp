@@ -27,7 +27,17 @@
 			&nbsp;
 		</dd>
 	</dl>
+
+	<!--Compaign Deployment button-->
+<?php echo $this->Form->create(['action' => '/deploy/'.$campaign['Campaign']['id']]); 
+	if($campaign['Campaign']['deployed'])
+		echo $this->Form->end(array('label'=>'Deployed', 'disabled' =>true, 'class'=>'disabled'));
+	else
+		echo $this->Form->end('Deploy');
+?>
+
 </div>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

@@ -15,3 +15,8 @@
 	padding-top: 10px;
 	margin-left: 25px;
 }
+
+.disabled{
+
+	opacity: 0.4;
+}
