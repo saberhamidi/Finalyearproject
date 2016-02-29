@@ -40,7 +40,24 @@ class CampaignsController extends AppController {
 		}
 		$options = array('conditions' => array('Campaign.' . $this->Campaign->primaryKey => $id));
 		$this->set('campaign', $this->Campaign->find('first', $options));
-		//$this->set('participants', $this->Participant->Paginator->paginate());
+
+			//fetch participant ids
+			$pids = $this->Campaign->Participant->find('list', array('fields' => 'Participant.participant_id', 'conditions'=>'Participant.campaign_id =='.$id));
+
+			//stor particpant ids
+			$participants=array();
+
+			//connect to the database and fetch full details of each participant
+			$db = ConnectionManager::getDataSource('default');
+			if(!empty($pids)){
+				foreach ($pids as $key => $pid) {
+					$participant = $db->fetchAll("SELECT email, firstname, lastname, loyalty_balance from customers where email = ?",[$pid])[0][0];
+					array_push($participants, $participant);
+				}
+			}
+
+			$this->set('participants',$participants);
+
 	}
 
 /**

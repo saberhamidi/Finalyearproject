@@ -1,10 +1,10 @@
 <?php
-App::uses('Campaign', 'Model');
+App::uses('Participant', 'Model');
 
 /**
- * Campaign Test Case
+ * Participant Test Case
  */
-class CampaignTest extends CakeTestCase {
+class ParticipantTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -12,8 +12,8 @@ class CampaignTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.campaign',
-		'app.participant'
+		'app.participant',
+		'app.campaign'
 	);
 
 /**
@@ -23,7 +23,7 @@ class CampaignTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Campaign = ClassRegistry::init('Campaign');
+		$this->Participant = ClassRegistry::init('Participant');
 	}
 
 /**
@@ -32,7 +32,7 @@ class CampaignTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Campaign);
+		unset($this->Participant);
 
 		parent::tearDown();
 	}

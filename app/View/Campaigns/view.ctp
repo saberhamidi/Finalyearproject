@@ -34,7 +34,28 @@
 		echo $this->Form->end(array('label'=>'Deployed', 'disabled' =>true, 'class'=>'disabled'));
 	else
 		echo $this->Form->end('Deploy');
+
 ?>
+	<h2><?php echo __('Participants'); ?></h2>
+	<table cellpadding="0" cellspacing="0">
+	<thead>
+	<tr>
+			<th>Email</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Loyalty Balance</th>
+	</tr>
+	</thead>
+	<?php foreach ($participants as $participant): ?>
+		<tr>
+			<td><?php echo h($participant['email']); ?>&nbsp;</td>
+			<td><?php echo h($participant['firstname']); ?>&nbsp;</td>
+			<td><?php echo h($participant['lastname']); ?>&nbsp;</td>
+			<td><?php echo h($participant['loyalty_balance']); ?>&nbsp;</td>
+		</tr>
+	<?php endforeach; ?>
+	</tbody>
+	</table>
 
 </div>
 
