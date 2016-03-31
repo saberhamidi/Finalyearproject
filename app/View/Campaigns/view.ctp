@@ -28,6 +28,39 @@
 		</dd>
 	</dl>
 
+<!--Display the time left till the campaign expire date-->
+<?php
+	if($campaign['Campaign']['deployed']){
+		$now = new DateTime('now');
+		$expire = new DateTime($campaign['Campaign']['expire_date']);
+		$d = date_diff($now, $expire);
+		$timeLeftToExpire = ($d->m*43200)+($d->d*1440)+($d->i*60)+($d->i);
+?>
+<br>
+<div class = 'timer'>
+	<br>
+	<p>Time left to expire</p>
+	<br>
+	<div class="clock" style="margin:2em;"></div>
+	<script type="text/javascript">
+		var clock;
+		$(document).ready(function() {
+			var time = '<?php echo $timeLeftToExpire?>'*60;
+			clock = $('.clock').FlipClock(time, {
+			clockFace: 'dailyCounter',
+			countdown: true,
+			autoStart: false,
+			});
+			clock.start();
+		});
+	</script>
+	<br><br>
+</div>
+<?php 
+	}
+?>
+
+
 	<!--Compaign Deployment button-->
 <?php echo $this->Form->create(['action' => '/deploy/'.$campaign['Campaign']['id']]); 
 	if($campaign['Campaign']['deployed'])

@@ -56,7 +56,10 @@ class PagesController extends AppController {
 
 			//fetch customer id from the participant table using the record id
 			$cust_id = $db->query("SELECT participant_id FROM participants WHERE id = ?",[$path[1]]);
-			if($cust_id){
+
+			//if the participant exist and the page hasn't been visited before, update the recommender's loyalty balance
+			if($cust_id && !$this->Cookie->read('visited')){
+				$this->Cookie->write('visited',true, false,'+10 days');
 				$cust_id = $cust_id[0][0]['participant_id'];
 				$db->query("UPDATE customers SET loyalty_balance = loyalty_balance + 2 WHERE email = ?", [$cust_id]);
 			}

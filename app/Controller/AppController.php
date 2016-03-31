@@ -9,7 +9,7 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $components = array(
-		'Flash', 'RequestHandler',
+		'Flash', 'RequestHandler', 'Cookie',
 
 		'Auth' => array(
 			'authenticate' => array(

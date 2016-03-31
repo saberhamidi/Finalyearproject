@@ -69,9 +69,15 @@ class CampaignsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Campaign->create();
 			if ($this->Campaign->save($this->request->data)) {
-
+				/*
+				Construct a file name combining the word 'campaign' with the id of
+				the current campaign. */
 				$fname = 'campaign'.$this->Campaign->id.'.ctp';
+
+				//Create a file and assign the above file name to it, then place it in the Pages folder
 				$file = new File('app/View/Pages/'.$fname,true);
+
+				//write contents of the campaign to the file.
 				$file->write($this->request->data['Campaign']['page']);
 
 				$this->Flash->success(__('The campaign has been successifully created!.'));
