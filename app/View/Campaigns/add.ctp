@@ -25,12 +25,12 @@
 
 <div class="campaigns form">
 <?php echo $this->Form->create('Campaign'); ?>
-	<fieldset>
+	<fieldset id='form'>
 		<legend><?php echo __('Add Campaign'); ?></legend>
 	<?php
-		echo $this->Form->input('name', ['type' =>'text']);
-		echo $this->Form->input('type', array(
-    		'options' => array('Re-tweeting Promotion'=>'Re-tweeting Promotion','Recommend for Reward'=>'Recommend for Reward'),
+		echo $this->Form->input('name',['type' =>'text']);
+		echo $this->Form->input('type', array('onchange'=>'change()',
+    		'options' => array('Recommend for Reward'=>'Recommend for Reward','Re-tweeting Promotion'=>'Re-tweeting Promotion'),
     		'empty' => '(Type)'
 		));
 		echo "<label class = 'required'>Start Date</label>";
@@ -39,10 +39,24 @@
 		echo $this->Form->date('expire_date');
 		echo "<br><br><label class = 'required'>Content</label>";
 		echo $this->Wysiwyg->textarea('page');
+		echo $this->Form->input('hashtag',['div'=>['style'=>'display: none;','id'=>'hashtag'],'type' =>'text']);
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
+
+<!--Show or hid the hashtag input depend on the campaign type-->
+<script>
+	function change(){
+		if($('#CampaignType').val() ==='Re-tweeting Promotion'){
+			$('#hashtag').show();
+		}
+		else{
+			$('#hashtag').hide();
+		}
+	}
+</script>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

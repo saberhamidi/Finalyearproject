@@ -1,3 +1,3 @@
 <h1 style="text-align: center;"><strong>Welcome to our Easter Campaign 2016</strong></h1>
-<h5 style="text-align: center;">Please share it with your family and friends, and come along taking advantage of our fantastic easter offers and discounts</h5>
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="/img/campaigns//offer-re.jpg" alt="" /></p>
+<h5 style="text-align: center;">We are holding another Re-tweeting Promotion campaign for easter 2016. Please tweet the attached promotion, and share it with all of your family and friends on Twitter. The participant who receives the highest number of retweets will be the winner of this campaign. Don't forget&nbsp;to include the campaign hashtag on your tweet. GOOD LUCK!!</h5>
+<p style="text-align: center;"><img src="/img/campaigns//c57.jpg" alt="" /></p>

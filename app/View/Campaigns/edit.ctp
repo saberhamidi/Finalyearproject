@@ -28,20 +28,57 @@
 		<legend><?php echo __('Edit Campaign'); ?></legend>
 	<?php
 		echo $this->Form->input('name', ['type' =>'text']);
-		echo $this->Form->input('type', array(
-    		'options' => array('Re-Tweet'=>'Re-Tweet','Recommend for Reward'=>'Recommend for Reward'),
-    		'empty' => '(Type)'
-		));
+
+		//disable the campaign type to be changed when the it is already deployed
+		if($campaignStatues){
+			echo $this->Form->input('type', array('onchange'=>'change()','disabled' =>true,
+	    		'options' => array('Re-tweeting Promotion'=>'Re-tweeting Promotion','Recommend for Reward'=>'Recommend for Reward'),
+	    		'empty' => '(Type)'
+			));
+		}
+		else{
+			echo $this->Form->input('type', array('onchange'=>'change()',
+		    	'options' => array('Re-tweeting Promotion'=>'Re-tweeting Promotion','Recommend for Reward'=>'Recommend for Reward'),
+		    	'empty' => '(Type)'
+			));
+		}
+
 		echo "<label class = 'required'>Start Date</label>";
 		echo $this->Form->date('start_date');
 		echo "<br><br><label class = 'required'>Expire Date</label>";
 		echo $this->Form->date('expire_date');
 		echo "<br><br><label class = 'required'>Content</label>";
 		echo $this->Wysiwyg->textarea('page',['value' => $content]);
+
+		if($campaignType == 'Re-tweeting Promotion' && $campaignStatues){
+			echo $this->Form->input('hashtag', ['div'=>['id'=>'hashtag'],'disabled' =>true, 'type' =>'text']);
+		}
+
+		elseif ($campaignType == 'Re-tweeting Promotion' && !$campaignStatues) {
+			echo $this->Form->input('hashtag', ['div'=>['id'=>'hashtag'],'type' =>'text']);
+		}
+
+		else{
+
+			echo $this->Form->input('hashtag', ['div'=>['id'=>'hashtag', 'style'=>'display: none'],'type' =>'text']);
+		}
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
+
+<!--Show or hid the hashtag input depend on the campaign type-->
+<script>
+	function change(){
+		if($('#CampaignType').val() ==='Re-tweeting Promotion'){
+			$('#hashtag').show();
+		}
+		else{
+			$('#hashtag').hide();
+		}
+	}
+</script>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

@@ -199,6 +199,7 @@
   left: 5px; }
 
 .flip-clock-divider .flip-clock-label {
+  font-size: 25px;
   position: absolute;
   top: -1.5em;
   right: -86px;
